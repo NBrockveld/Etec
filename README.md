@@ -1,2 +1,2 @@
 # Etec
-Repositória para agendas Etec 2025
+Repositório para agendas Etec 2025
