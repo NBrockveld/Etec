@@ -1,0 +1,8 @@
+DELIMITER $$
+CREATE FUNCTION obter_nome_sindico(matricula_sind INT) RETURNS VARCHAR(80) DETERMINISTIC
+BEGIN
+    DECLARE nome_sindico VARCHAR(80);
+    SELECT nome INTO nome_sindico FROM sindico WHERE matricula = matricula_sind;
+    RETURN nome_sindico;
+END $$
+DELIMITER ;

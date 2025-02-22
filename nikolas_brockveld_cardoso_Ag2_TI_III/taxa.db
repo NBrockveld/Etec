@@ -1,0 +1,10 @@
+DELIMITER $$
+CREATE FUNCTION calcular_taxa_condominio(id_apto VARCHAR(5), percentual DOUBLE) RETURNS DOUBLE(10,2) DETERMINISTIC
+BEGIN
+    DECLARE valor_apartamento DOUBLE(10,2);
+    DECLARE taxa DOUBLE(10,2);
+    SELECT valor INTO valor_apartamento FROM apartamento WHERE numero = id_apto;
+    SET taxa = valor_apartamento * (percentual / 100);
+    RETURN taxa;
+END $$
+DELIMITER ;

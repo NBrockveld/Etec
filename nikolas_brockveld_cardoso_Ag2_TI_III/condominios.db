@@ -1,0 +1,2 @@
+SELECT c.nome AS nome_condominio, c.endereco, obter_nome_sindico(c.matricula_sind) AS nome_sindico 
+FROM condominio c;

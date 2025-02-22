@@ -1,0 +1,3 @@
+SELECT a.numero, a.valor, calcular_taxa_condominio(a.numero, 5) AS taxa_condominio
+FROM apartamento a
+WHERE a.codigo_cond = "X";--Código que você quer achar
