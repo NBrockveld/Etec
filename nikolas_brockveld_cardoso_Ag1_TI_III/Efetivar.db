@@ -1,0 +1,10 @@
+CREATE PROCEDURE EfetivarCompraApartamento(
+    IN p_rg_prop VARCHAR(15),
+    IN p_numero_ap VARCHAR(5)
+)
+BEGIN
+    DECLARE v_prop_id INT;
+    SELECT COALESCE(MAX(prop_ap_id), 0) + 1 INTO v_prop_id FROM proprietario_apartamento;
+    INSERT INTO proprietario_apartamento (prop_ap_id, numero_ap, rg_prop)
+    VALUES (v_prop_id, p_numero_ap, p_rg_prop);
+END

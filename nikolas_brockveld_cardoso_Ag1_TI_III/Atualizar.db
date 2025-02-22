@@ -1,0 +1,9 @@
+CREATE PROCEDURE AtualizarValorApartamentos(
+    IN p_codigo_cond INT,
+    IN p_percentual INT
+)
+BEGIN
+    UPDATE apartamento
+    SET valor = valor + (valor * p_percentual / 100)
+    WHERE codigo_cond = p_codigo_cond;
+END 

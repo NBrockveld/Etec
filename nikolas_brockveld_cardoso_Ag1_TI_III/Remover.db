@@ -1,0 +1,12 @@
+CREATE PROCEDURE EfetivarCompraApartamento(
+    IN p_rg_prop VARCHAR(15),
+    IN p_numero_ap VARCHAR(5)
+)
+BEGIN
+    -- Remove qualquer proprietário anterior do apartamento
+    DELETE FROM proprietario_apartamento WHERE numero_ap = p_numero_ap;
+
+    -- Insere o novo proprietário na tabela de relação
+    INSERT INTO proprietario_apartamento (numero_ap, rg_prop)
+    VALUES (p_numero_ap, p_rg_prop);
+END
