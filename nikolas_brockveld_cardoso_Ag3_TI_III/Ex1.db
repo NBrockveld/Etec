@@ -1,0 +1,10 @@
+DELIMITER $$
+CREATE TRIGGER trg_insert_garagem
+AFTER INSERT ON apartamento
+FOR EACH ROW
+BEGIN
+    IF NEW.tipo = 'cobertura' THEN
+        INSERT INTO garagem (tipo, numero_ap) VALUES ('coberta', NEW.numero);
+    END IF;
+END$$
+DELIMITER ;

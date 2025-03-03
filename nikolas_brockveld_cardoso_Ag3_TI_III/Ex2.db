@@ -1,0 +1,18 @@
+DELIMITER $$
+CREATE TRIGGER trg_update_valor_apartamento
+AFTER DELETE ON garagem
+FOR EACH ROW
+BEGIN
+    UPDATE apartamento
+    SET valor = valor * 0.7
+    WHERE numero = OLD.numero_ap;
+END$$
+DELIMITER ;
+--Parte 2
+INSERT INTO apartamento (numero, tipo, codigo_cond, valor) VALUES ('c601', 'cobertura', 1, 180000.00);
+
+SELECT * FROM garagem WHERE numero_ap = 'c601';
+--Parte 3
+DELETE FROM garagem WHERE numero = 5;
+--Parte 4
+SELECT * FROM apartamento WHERE numero = 'a501';
