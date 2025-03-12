@@ -1,0 +1,47 @@
+using System.Collections.ObjectModel;
+using System.Linq;
+using Microsoft.Maui.Controls;
+
+namespace MauiAppMinhasCompras.Views
+{
+    public partial class ListaProduto : ContentPage
+    {
+        private ObservableCollection<Produto> produtosOriginais;
+        public ObservableCollection<Produto> ProdutosFiltrados { get; set; }
+
+        public ListaProduto()
+        {
+            InitializeComponent();
+            produtosOriginais = new ObservableCollection<Produto>
+            {
+                new Produto { Id = 1, Descricao = "Arroz", Preco = 5.99, Quantidade = 2 },
+                new Produto { Id = 2, Descricao = "Feijão", Preco = 7.50, Quantidade = 1 },
+                new Produto { Id = 3, Descricao = "Açúcar", Preco = 3.20, Quantidade = 3 }
+            };
+
+            ProdutosFiltrados = new ObservableCollection<Produto>(produtosOriginais);
+            lst_produtos.ItemsSource = ProdutosFiltrados;
+        }
+
+        private void txt_search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string filtro = e.NewTextValue?.ToLower() ?? string.Empty;
+            ProdutosFiltrados.Clear();
+
+            foreach (var produto in produtosOriginais.Where(p => p.Descricao.ToLower().Contains(filtro)))
+            {
+                ProdutosFiltrados.Add(produto);
+            }
+        }
+    }
+
+    public class Produto
+    {
+        public int Id { get; set; }
+        public string Descricao { get; set; }
+        public double Preco { get; set; }
+        public int Quantidade { get; set; }
+        public double Total => Preco * Quantidade;
+    }
+}
+

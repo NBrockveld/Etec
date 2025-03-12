@@ -1,0 +1,8 @@
+--Segurança da view
+
+CREATE USER 'usuario'@'localhost' IDENTIFIED BY 'senha';
+
+GRANT SELECT ON imobiliaria.vw_sindico_contato TO 'usuario'@'localhost';
+GRANT SELECT ON imobiliaria.vw_total_apartamentos TO 'usuario'@'localhost';
+
+FLUSH PRIVILEGES;

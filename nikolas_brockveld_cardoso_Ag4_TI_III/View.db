@@ -1,0 +1,26 @@
+--Se os sindicos estão corretos
+SELECT sindico, COUNT(*) AS qtd
+FROM vw_sindico_contato
+GROUP BY sindico
+HAVING COUNT(*) > 1;
+
+--Se os apartamentos estão corretos
+SELECT condominio, COUNT(*) AS qtd
+FROM vw_total_apartamentos
+GROUP BY condominio
+HAVING COUNT(*) > 1;
+
+--Tirar apartamentos vazios
+SELECT a.numero AS apartamento, c.nome AS condominio
+FROM apartamento a
+LEFT JOIN proprietario_apartamento pa ON a.numero = pa.numero_ap
+LEFT JOIN condominio c ON a.codigo_cond = c.codigo
+WHERE pa.numero_ap IS NULL;
+
+--View
+SELECT a.numero AS apartamento, c.nome AS condominio, COUNT(pa.rg_prop) AS total_residentes
+FROM apartamento a
+LEFT JOIN proprietario_apartamento pa ON a.numero = pa.numero_ap
+LEFT JOIN condominio c ON a.codigo_cond = c.codigo
+GROUP BY a.numero, c.nome
+ORDER BY c.nome, a.numero;

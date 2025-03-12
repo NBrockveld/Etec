@@ -1,0 +1,7 @@
+--View dos apartamentos
+
+CREATE VIEW vw_total_apartamentos AS
+SELECT c.nome AS condominio, COUNT(a.numero) AS total_apartamentos
+FROM condominio c
+LEFT JOIN apartamento a ON c.codigo = a.codigo_cond
+GROUP BY c.nome;

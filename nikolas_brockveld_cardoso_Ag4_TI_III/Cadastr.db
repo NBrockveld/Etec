@@ -1,0 +1,6 @@
+--Criar a view
+
+CREATE VIEW vw_sindico_contato AS
+SELECT c.nome AS condominio, s.nome AS sindico, s.telefone
+FROM condominio c
+JOIN sindico s ON c.matricula_sind = s.matricula;
